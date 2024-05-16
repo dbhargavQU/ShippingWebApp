@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Form</title>
+</head>
+<body>
+    <h1>Information Form</h1>
+    <form id="infoForm">
+        <h2>From Address</h2>
+        <label for="from_name">Name:</label>
+        <input type="text" id="from_name" name="from_name" required><br><br>
+        
+        <label for="from_company">Company / Reference Number (optional):</label>
+        <input type="text" id="from_company" name="from_company"><br><br>
+
+        <label for="from_street">Street:</label>
+        <input type="text" id="from_street" name="from_street" required><br><br>
+        
+        <label for="from_street2">Street 2 (optional):</label>
+        <input type="text" id="from_street2" name="from_street2"><br><br>
+
+        <label for="from_city">City:</label>
+        <input type="text" id="from_city" name="from_city" required><br><br>
+
+        <label for="from_zip">Zip:</label>
+        <input type="text" id="from_zip" name="from_zip" required><br><br>
+
+        <label for="from_state">State:</label>
+        <input type="text" id="from_state" name="from_state" required><br><br>
+
+        <label for="from_phone">Phone:</label>
+        <input type="text" id="from_phone" name="from_phone" required><br><br>
+
+        <h2>To Address</h2>
+        <label for="to_name">Name:</label>
+        <input type="text" id="to_name" name="to_name" required><br><br>
+
+        <label for="to_company_ref">Company / Reference Number (optional):</label>
+        <input type="text" id="to_company_ref" name="to_company_ref"><br><br>
+
+        <label for="to_company">Company:</label>
+        <input type="text" id="to_company" name="to_company"><br><br>
+
+        <label for="to_street">Street:</label>
+        <input type="text" id="to_street" name="to_street" required><br><br>
+        
+        <label for="to_street2">Street 2 (optional):</label>
+        <input type="text" id="to_street2" name="to_street2"><br><br>
+
+        <label for="to_city">City:</label>
+        <input type="text" id="to_city" name="to_city" required><br><br>
+
+        <label for="to_zip">Zip:</label>
+        <input type="text" id="to_zip" name="to_zip" required><br><br>
+
+        <label for="to_state">State:</label>
+        <input type="text" id="to_state" name="to_state" required><br><br>
+
+        <label for="to_phone">Phone:</label>
+        <input type="text" id="to_phone" name="to_phone" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('infoForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var form = e.target;
+            var data = new FormData(form);
+
+            fetch('https://script.google.com/macros/s/AKfycbxAiqg-NYLnXWUsA9fRekUH_br-JXLuOX5YBECE2T8oa1dI1VGbK6B6AqpXqj-MqvAL/exec', {
+                method: 'POST',
+                body: data
+            })
+            .then(response => response.text())
+            .then(responseText => {
+                alert(responseText);
+                form.reset();
+            })
+            .catch(error => console.error('Error!', error.message));
+        });
+    </script>
+</body>
+</html>
